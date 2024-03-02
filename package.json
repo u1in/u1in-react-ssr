@@ -2,12 +2,11 @@
   "name": "u1in-react-ssr",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "build:dev:client": "cross-env SUPPRESS_NO_CONFIG_WARNING=true NODE_ENV=development webpack --config ./webpack.client.js",
-    "build:dev:server": "cross-env SUPPRESS_NO_CONFIG_WARNING=true NODE_ENV=development webpack --config ./webpack.server.js",
-    "dev": "run-s build:dev:client build:dev:server",
-    "node": "node ./dist/node.js"
+    "build:dev:client": "cross-env SUPPRESS_NO_CONFIG_WARNING=true NODE_ENV=development webpack --config ./webpack/webpack.client.js",
+    "build:dev:server": "cross-env SUPPRESS_NO_CONFIG_WARNING=true NODE_ENV=development webpack --config ./webpack/webpack.server.js",
+    "build": "run-s build:dev:client build:dev:server",
+    "start": "node ./build/node.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +28,7 @@
     "css-loader": "^6.10.0",
     "html-webpack-plugin": "^5.6.0",
     "npm-run-all": "^4.1.5",
+    "picocolors": "^1.0.0",
     "postcss-loader": "^8.1.1",
     "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^3.3.4",

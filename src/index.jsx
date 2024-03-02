@@ -1,7 +1,7 @@
 import React from "react";
 import { hydrateRoot } from "react-dom/client";
-import Router from "./router";
+import ClientRouter from "@routes/client";
 
-const App = () => <Router />;
+const App = () => <ClientRouter />;
 
 hydrateRoot(document.getElementById("app"), <App />);

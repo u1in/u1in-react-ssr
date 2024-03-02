@@ -1,7 +1,7 @@
 import React from "react";
-import Manifest from "@root/dist/client/manifest.json";
+import Manifest from "@root/build/client/manifest.json";
 
-const Layout = (props) => {
+const Layout = ({ children }) => {
   return (
     <html lang="en">
       <head>
@@ -24,9 +24,9 @@ const Layout = (props) => {
       </head>
 
       <body>
-        <div id="app">{props?.children}</div>
+        <div id="app">{children}</div>
         {Object.keys(Manifest).map((resource) => (
-          <script src={Manifest[resource]}></script>
+          <script key={resource} src={Manifest[resource]}></script>
         ))}
       </body>
     </html>

@@ -13,10 +13,10 @@ const webpackConfig = {
     type: "filesystem",
   },
   entry: {
-    index: path.resolve(__dirname, "./index.jsx"),
+    index: path.resolve(__dirname, "../src/index.jsx"),
   },
   output: {
-    path: path.resolve(__dirname, "./dist/client"),
+    path: path.resolve(__dirname, "../build/client"),
     filename: "js/[name]-[hash].js",
     clean: true,
   },
@@ -24,27 +24,32 @@ const webpackConfig = {
   resolve: {
     extensions: [".jsx", ".js"],
     alias: {
-      "@root": path.resolve(__dirname, "./"),
-      "@src": path.resolve(__dirname, "./src"),
+      "@root": path.resolve(__dirname, "../"),
+      "@src": path.resolve(__dirname, "../src"),
+      "@utils": path.resolve(__dirname, "../utils"),
+      "@routes": path.resolve(__dirname, "../routes"),
+      "@common": path.resolve(__dirname, "../common"),
     },
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        use: ["thread-loader", "babel-loader"],
+        use: [
+          "thread-loader",
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+              sourceType: "unambiguous",
+            },
+          },
+        ],
       },
       //css处理
       {
         test: /\.css$/,
-        use: [
-          "thread-loader",
-          "style-loader",
-          {
-            loader: "css-loader",
-          },
-          "postcss-loader",
-        ],
+        use: ["thread-loader", "style-loader", "css-loader", "postcss-loader"],
       },
       {
         test: /\.(png|jpg|gif|jpeg)$/,
@@ -53,10 +58,14 @@ const webpackConfig = {
           filename: "images/[hash][ext][query]",
         },
       },
-      // { test: /\.json$/, type: "json" },
     ],
   },
-  plugins: [new WebpackManifestPlugin({ publicPath: "" })],
+  plugins: [
+    new WebpackManifestPlugin({ publicPath: "" }),
+    new webpack.DefinePlugin({
+      CONFIG: JSON.stringify(config),
+    }),
+  ],
   optimization: {
     minimizer: [
       new TerserPlugin({
