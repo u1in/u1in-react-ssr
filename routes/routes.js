@@ -6,7 +6,7 @@ const routes = [
   {
     key: "/",
     path: "/",
-    component: () => <Navigate to="/home" />,
+    component: () => <Navigate replace to="/home" />,
   },
   {
     key: "/home",
