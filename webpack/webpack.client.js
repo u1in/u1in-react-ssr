@@ -2,13 +2,16 @@ const path = require("path");
 const webpackBaseConfig = require("./webpack.base");
 const { merge } = require("webpack-merge");
 const TerserPlugin = require("terser-webpack-plugin");
-const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
-const smp = new SpeedMeasurePlugin();
-
 const webpackConfig = {
+  cache: {
+    type: "filesystem",
+    allowCollectingMemory: true,
+    cacheDirectory: path.resolve(__dirname, "../node_modules/.temp_cache/client"),
+  },
   entry: {
     index: path.resolve(__dirname, "../src/index.jsx"),
   },
@@ -17,7 +20,24 @@ const webpackConfig = {
     filename: "js/[name]-[hash].js",
     clean: true,
   },
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "less-loader",
+        ],
+      },
+    ],
+  },
   plugins: [
+    new MiniCssExtractPlugin({
+      ignoreOrder: true,
+      filename: "css/[name]-[hash:8].min.css",
+    }),
     new WebpackManifestPlugin({
       publicPath: "",
       filter: (file) => {

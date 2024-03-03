@@ -1,5 +1,22 @@
 import React from "react";
-import Manifest from "@root/build/client/manifest.json";
+import manifest from "@root/build/client/manifest.json";
+
+const getExt = (filename) => {
+  if (typeof filename === "string") {
+    const fileNameArr = filename.split(".");
+    return fileNameArr[fileNameArr.length - 1].toLocaleLowerCase();
+  }
+  return "";
+};
+
+const manifestObj = {};
+Object.keys(manifest).map((filename) => {
+  const ext = getExt(filename);
+  if (manifestObj[ext] === undefined) {
+    manifestObj[ext] = [];
+  }
+  manifestObj[ext].push(manifest[filename]);
+});
 
 const Layout = ({ children, serverData }) => {
   return (
@@ -21,6 +38,15 @@ const Layout = ({ children, serverData }) => {
           }`,
           }}
         ></style>
+        {manifestObj.css.map((link) => (
+          <link key={"preload" + link} rel="preload" href={link} as="style" />
+        ))}
+        {manifestObj.js.map((link) => (
+          <link key={"preload" + link} rel="preload" href={link} as="script" />
+        ))}
+        {manifestObj.css.map((link) => (
+          <link key={link} rel="stylesheet" href={link} />
+        ))}
       </head>
 
       <body>
@@ -30,8 +56,8 @@ const Layout = ({ children, serverData }) => {
             __html: `window.__SERVER_DATA__ = ${JSON.stringify(serverData)}`,
           }}
         ></script>
-        {Object.keys(Manifest).map((resource) => (
-          <script key={resource} src={Manifest[resource]}></script>
+        {manifestObj.js.map((link) => (
+          <script key={link} src={link}></script>
         ))}
       </body>
     </html>

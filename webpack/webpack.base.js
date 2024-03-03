@@ -3,10 +3,6 @@ const webpack = require("webpack");
 const config = require("config");
 
 const webpackConfig = {
-  cache: {
-    type: "filesystem",
-    allowCollectingMemory: true,
-  },
   resolve: {
     extensions: [".jsx", ".js"],
     alias: {
@@ -31,16 +27,6 @@ const webpackConfig = {
               sourceType: "unambiguous",
             },
           },
-        ],
-      },
-      {
-        test: /\.less$/,
-        use: [
-          "thread-loader",
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          "less-loader",
         ],
       },
       {
