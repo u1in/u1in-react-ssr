@@ -8,6 +8,7 @@ import routes from "@routes/routes";
 
 const render = async (url) => {
   const CurrentRoute = routes.find((route) => matchPath(route, url))?.component;
+  // ignore error temporarily
   const [_err, data] =
     CurrentRoute?.initData && CurrentRoute.initData instanceof Function
       ? await on(CurrentRoute.initData())
