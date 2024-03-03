@@ -15,7 +15,7 @@ app.use(serve(path.join(__dirname, "./client/")));
 app.use(async (ctx, next) => {
   if (ctx.request.url === "/hello") {
     ctx.body = {
-      hello: "Hello React SSR!",
+      hello: "Hello React IR!",
     };
     return;
   }
