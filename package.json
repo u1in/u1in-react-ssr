@@ -1,11 +1,12 @@
 {
-  "name": "u1in-react-isomorphic-render-template",
+  "name": "u1in-react-isomorphic-render",
   "version": "1.0.0",
-  "description": "",
+  "description": "Most mininal react isomorphic rendering framework.",
+  "keywords": ["react", "isomorphic", "isomorphic rendering", "koa"],
   "scripts": {
     "build:client": "webpack --config ./webpack/webpack.client.js",
     "build:server": "webpack --config ./webpack/webpack.server.js",
-    "build": "cross-env NODE_ENV=development run-s build:client build:server",
+    "build": "cross-env NODE_ENV=production run-s build:client build:server",
     "start": "node ./build/node.js"
   },
   "author": "u1in",
