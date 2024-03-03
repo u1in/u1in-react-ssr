@@ -33,11 +33,7 @@ app.use(async (ctx) => {
 
 app.listen(CONFIG.PORT, () => {
   console.log(
-    pc.blue(
-      `Server Run in: ${pc.underline(
-        `http://127.0.0.1:${CONFIG.PORT}`
-      )} .`
-    )
+    pc.blue(`Server Run in: ${pc.underline(`http://127.0.0.1:${CONFIG.PORT}`)} .`)
   );
   if (CONFIG.ENV === "development") {
     exec(`http://127.0.0.1:${CONFIG.PORT}`);
