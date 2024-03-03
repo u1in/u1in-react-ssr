@@ -1,1 +1,1 @@
-# u1in-react-msr-template
+# u1in-react-isomorphic-render-template
