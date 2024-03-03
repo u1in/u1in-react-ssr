@@ -1,7 +1,7 @@
 {
   "name": "u1in-react-isomorphic-render",
   "version": "1.0.0",
-  "description": "Most mininal react isomorphic rendering framework.",
+  "description": "Most minimal react isomorphic rendering framework.",
   "keywords": [
     "react",
     "isomorphic",
