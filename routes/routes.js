@@ -1,16 +1,17 @@
-import Page1 from "../src/Page1.jsx";
-import Page2 from "../src/Page2.jsx";
+import React from "react";
+import { Navigate } from "react-router-dom";
+import Home from "@src/pages/home";
 
 const routes = [
   {
-    key: "/page1",
-    path: "/page1",
-    component: Page1,
+    key: "/",
+    path: "/",
+    component: () => <Navigate to="/home" />,
   },
   {
-    key: "/page2",
-    path: "/page2",
-    component: Page2,
+    key: "/home",
+    path: "/home",
+    component: Home,
   },
 ];
 

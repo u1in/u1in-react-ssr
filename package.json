@@ -11,6 +11,7 @@
   "author": "u1in",
   "license": "ISC",
   "dependencies": {
+    "await-handler": "^1.1.2",
     "axios": "^1.6.7",
     "config": "^3.3.11",
     "copy-webpack-plugin": "^12.0.2",
@@ -24,10 +25,13 @@
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
+    "@svgr/webpack": "^8.1.0",
     "babel-loader": "^9.1.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.10.0",
     "html-webpack-plugin": "^5.6.0",
+    "less": "^4.2.0",
+    "less-loader": "^12.2.0",
     "npm-run-all": "^4.1.5",
     "picocolors": "^1.0.0",
     "postcss-loader": "^8.1.1",
@@ -38,6 +42,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2",
     "webpack-manifest-plugin": "^5.0.0",
+    "webpack-merge": "^5.10.0",
     "webpack-nano": "^1.1.1",
     "webpack-node-externals": "^3.0.0"
   }

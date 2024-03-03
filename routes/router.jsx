@@ -4,8 +4,8 @@ import router from "@routes/routes";
 import RouteContext from "@routes/utils/context";
 
 const RouterWrap = ({ component }) => {
-  const INIDATA = useContext(RouteContext);
-  return React.createElement(component, { INIDATA });
+  const INITDATA = useContext(RouteContext);
+  return React.createElement(component, { INITDATA });
 };
 
 const Router = () => (

@@ -13,7 +13,7 @@ app.use(serve(path.join(__dirname, "./client/")));
 
 // !!This is a test route, this framework should not be used to transfer data.
 app.use(async (ctx, next) => {
-  if (ctx.request.url === "/test") {
+  if (ctx.request.url === "/hello") {
     ctx.body = {
       hello: "Hello React SSR!",
     };
