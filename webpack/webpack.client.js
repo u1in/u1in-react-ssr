@@ -5,12 +5,17 @@ const TerserPlugin = require("terser-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const webpack = require("webpack");
+const config = require("config");
 
 const webpackConfig = {
   cache: {
     type: "filesystem",
     allowCollectingMemory: true,
-    cacheDirectory: path.resolve(__dirname, "../node_modules/.temp_cache/client"),
+    cacheDirectory: path.resolve(
+      __dirname,
+      "../node_modules/.temp_cache/client"
+    ),
   },
   entry: {
     index: path.resolve(__dirname, "../src/index.jsx"),
@@ -34,6 +39,10 @@ const webpackConfig = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      CONFIG: JSON.stringify(config),
+      IS_SERVER: false,
+    }),
     new MiniCssExtractPlugin({
       ignoreOrder: true,
       filename: "css/[name]-[hash:8].min.css",

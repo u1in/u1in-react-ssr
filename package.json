@@ -11,7 +11,8 @@
   "scripts": {
     "build:client": "webpack --config ./webpack/webpack.client.js",
     "build:server": "webpack --config ./webpack/webpack.server.js",
-    "build": "cross-env NODE_ENV=production run-s build:client build:server",
+    "build:link": "node ./utils/softlink.js",
+    "build": "cross-env NODE_ENV=production run-s build:client build:server build:link",
     "start": "node ./build/node.js"
   },
   "author": "u1in",
@@ -38,6 +39,7 @@
     "html-webpack-plugin": "^5.6.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
+    "lnk": "^1.1.0",
     "mini-css-extract-plugin": "^1.6.2",
     "npm-run-all": "^4.1.5",
     "picocolors": "^1.0.0",
