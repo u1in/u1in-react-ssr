@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const config = require("config");
 
 const smp = new SpeedMeasurePlugin();
@@ -59,6 +60,15 @@ const webpackConfig = {
     new WebpackManifestPlugin({ publicPath: "" }),
     new webpack.DefinePlugin({
       CONFIG: JSON.stringify(config),
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "**/*",
+          to: path.resolve(__dirname, "../build/client/"),
+          context: path.resolve(__dirname, "../public/")
+        },
+      ],
     }),
   ],
   optimization: {

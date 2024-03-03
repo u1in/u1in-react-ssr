@@ -1,5 +1,5 @@
 {
-  "name": "u1in-react-ssr",
+  "name": "u1in-react-msr-template",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -8,11 +8,12 @@
     "build": "cross-env NODE_ENV=development run-s build:client build:server",
     "start": "node ./build/node.js"
   },
-  "author": "",
+  "author": "u1in",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.7",
     "config": "^3.3.11",
+    "copy-webpack-plugin": "^12.0.2",
     "koa": "^2.15.0",
     "koa-static": "^5.0.0",
     "react": "^18.2.0",

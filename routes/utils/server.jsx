@@ -1,7 +1,7 @@
 import React from "react";
 import { StaticRouter } from "react-router-dom/server";
 import Router from "@routes/router";
-import RouteContext from "@routes/context";
+import RouteContext from "@routes/utils/context";
 
 const ServerRouter = ({ url, serverData }) => (
   <RouteContext.Provider value={serverData}>

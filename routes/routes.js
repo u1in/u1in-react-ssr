@@ -1,4 +1,3 @@
-import { Navigate } from "react-router-dom";
 import Page1 from "../src/Page1.jsx";
 import Page2 from "../src/Page2.jsx";
 

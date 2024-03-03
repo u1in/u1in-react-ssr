@@ -1,5 +1,5 @@
 import React from "react";
-import ServerRouter from "@routes/server";
+import ServerRouter from "@routes/utils/server";
 import { matchPath } from "react-router-dom";
 import Layout from "@common/layout";
 import { renderToString } from "react-dom/server";

@@ -11,16 +11,20 @@ const routesArr = routes.map((item) => item.path);
 
 app.use(serve(path.join(__dirname, "./client/")));
 
-app.use(async (ctx) => {
-  if (routesArr.includes(ctx.request.url)) {
-    ctx.body = await render(ctx.request.url);
-    return;
-  }
-  // !!This is a test route, this framework should not be used to transfer data.
+// !!This is a test route, this framework should not be used to transfer data.
+app.use(async (ctx, next) => {
   if (ctx.request.url === "/test") {
     ctx.body = {
       hello: "Hello React SSR!",
     };
+    return;
+  }
+  await next();
+});
+
+app.use(async (ctx) => {
+  if (routesArr.includes(ctx.request.url)) {
+    ctx.body = await render(ctx.request.url);
     return;
   }
   ctx.status = 404;

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import router from "./routes";
-import RouteContext from "@routes/context";
+import router from "@routes/routes";
+import RouteContext from "@routes/utils/context";
 
 const RouterWrap = ({ component }) => {
   const INIDATA = useContext(RouteContext);
