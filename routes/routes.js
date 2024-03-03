@@ -1,13 +1,6 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
 import Home from "@src/pages/home";
 
 const routes = [
-  {
-    key: "/",
-    path: "/",
-    component: () => <Navigate replace to="/home" />,
-  },
   {
     key: "/home",
     path: "/home",

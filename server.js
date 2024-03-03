@@ -23,8 +23,15 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx) => {
-  if (routesArr.includes(ctx.request.url)) {
-    ctx.body = await render(ctx.request.url);
+  const method = ctx.method.toLocaleUpperCase();
+  const url = ctx.request.url;
+  if (method === "GET" && routesArr.includes(url)) {
+    ctx.body = await render(url);
+    return;
+  }
+  // Render The First Route When GET "/" or ""
+  if (method === "GET" && ["/", ""].includes(url)) {
+    ctx.redirect(routesArr[0]);
     return;
   }
   ctx.status = 404;
@@ -33,7 +40,9 @@ app.use(async (ctx) => {
 
 app.listen(CONFIG.PORT, () => {
   console.log(
-    pc.blue(`Server Run in: ${pc.underline(`http://127.0.0.1:${CONFIG.PORT}`)} .`)
+    pc.blue(
+      `Server Run in: ${pc.underline(`http://127.0.0.1:${CONFIG.PORT}`)} .`
+    )
   );
   if (CONFIG.ENV === "development") {
     exec(`http://127.0.0.1:${CONFIG.PORT}`);
