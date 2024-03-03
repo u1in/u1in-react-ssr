@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build:dev:client": "cross-env SUPPRESS_NO_CONFIG_WARNING=true NODE_ENV=development webpack --config ./webpack/webpack.client.js",
-    "build:dev:server": "cross-env SUPPRESS_NO_CONFIG_WARNING=true NODE_ENV=development webpack --config ./webpack/webpack.server.js",
-    "build": "run-s build:dev:client build:dev:server",
+    "build:client": "webpack --config ./webpack/webpack.client.js",
+    "build:server": "webpack --config ./webpack/webpack.server.js",
+    "build": "cross-env NODE_ENV=development run-s build:client build:server",
     "start": "node ./build/node.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.7",
     "config": "^3.3.11",
-    "fs-extra": "^11.2.0",
     "koa": "^2.15.0",
     "koa-static": "^5.0.0",
     "react": "^18.2.0",

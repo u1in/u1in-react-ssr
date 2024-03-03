@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Layout from "@common/layout";
 import Router from "@routes/router";
+import RouteContext from "@routes/context";
 
 const ClientRouter = () => (
-  <BrowserRouter>
-    <Router />
-  </BrowserRouter>
+  <RouteContext.Provider value={window.__SERVER_DATA__}>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  </RouteContext.Provider>
 );
 
 export default ClientRouter;

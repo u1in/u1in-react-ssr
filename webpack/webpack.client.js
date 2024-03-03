@@ -2,16 +2,12 @@ const path = require("path");
 const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const config = require("config");
 
 const smp = new SpeedMeasurePlugin();
 
 const webpackConfig = {
-  cache: {
-    type: "filesystem",
-  },
   entry: {
     index: path.resolve(__dirname, "../src/index.jsx"),
   },
@@ -20,7 +16,6 @@ const webpackConfig = {
     filename: "js/[name]-[hash].js",
     clean: true,
   },
-  // devtool: "cheap-module-source-map",
   resolve: {
     extensions: [".jsx", ".js"],
     alias: {

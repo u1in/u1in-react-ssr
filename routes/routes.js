@@ -3,11 +3,6 @@ import Page1 from "../src/Page1.jsx";
 import Page2 from "../src/Page2.jsx";
 
 const routes = [
-  // {
-  //   key: "/",
-  //   path: "/",
-  //   component: () => <Navigate to="/page1" />,
-  // },
   {
     key: "/page1",
     path: "/page1",

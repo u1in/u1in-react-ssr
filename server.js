@@ -4,18 +4,27 @@ import serve from "koa-static";
 import pc from "picocolors";
 import { exec } from "child_process";
 import render from "@utils/render";
+import routes from "@routes/routes";
 
 const app = new Koa();
+const routesArr = routes.map((item) => item.path);
 
 app.use(serve(path.join(__dirname, "./client/")));
 
-app.use((ctx) => {
-  console.log(ctx.request.url);
-  if(["/favicon.ico"].includes(ctx.request.url)) {
-    ctx.status = 404;
+app.use(async (ctx) => {
+  if (routesArr.includes(ctx.request.url)) {
+    ctx.body = await render(ctx.request.url);
     return;
   }
-  ctx.body = render(ctx.request.url);
+  // !!This is a test route, this framework should not be used to transfer data.
+  if (ctx.request.url === "/test") {
+    ctx.body = {
+      hello: "Hello React SSR!",
+    };
+    return;
+  }
+  ctx.status = 404;
+  ctx.body = "";
 });
 
 app.listen(CONFIG.PORT, () => {
