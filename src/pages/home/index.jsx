@@ -7,7 +7,7 @@ const Page = (props) => {
   return (
     <div className="home-container">
       <HomeSVG height="200" width="300" />
-      <div className="title">u1in-react-isomorphic-render-demo</div>
+      <div className="title">u1in-react-isomorphic-render</div>
       <div className="library">
         <span>React-SSR</span>
         <span>Webpack 5</span>
