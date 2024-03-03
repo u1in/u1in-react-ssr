@@ -7,8 +7,10 @@ import render from "@utils/render";
 import routes from "@routes/routes";
 
 const app = new Koa();
-const routesArr = routes.map((item) => item.path);
 
+const routesArr = ["/"].concat(routes.map((item) => item.path));
+
+// static router
 app.use(serve(path.join(__dirname, "./client/")));
 
 // !!This is a test route, this framework should not be used to transfer data.
@@ -22,20 +24,20 @@ app.use(async (ctx, next) => {
   await next();
 });
 
-app.use(async (ctx) => {
+// ui router
+app.use(async (ctx, next) => {
   const method = ctx.method.toLocaleUpperCase();
   const url = ctx.request.url;
   if (method === "GET" && routesArr.includes(url)) {
-    ctx.body = await render(url);
+    ctx.body = render(url);
     return;
   }
-  // Render The First Route When GET "/" or ""
-  if (method === "GET" && ["/", ""].includes(url)) {
-    ctx.redirect(routesArr[0]);
-    return;
-  }
+  await next();
+});
+
+// 404 route
+app.use((ctx, next) => {
   ctx.status = 404;
-  ctx.body = "";
 });
 
 app.listen(CONFIG.PORT, () => {

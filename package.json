@@ -13,7 +13,8 @@
     "build:server": "webpack --config ./webpack/webpack.server.js",
     "build:link": "node ./utils/softlink.js",
     "build": "cross-env NODE_ENV=production run-s build:client build:server build:link",
-    "start": "node ./build/node.js"
+    "csr": "cross-env NODE_ENV=production CSR=true node ./build/node.js",
+    "ssr": "cross-env NODE_ENV=production CSR=false node ./build/node.js"
   },
   "author": "u1in",
   "license": "ISC",

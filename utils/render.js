@@ -1,23 +1,24 @@
 import React from "react";
-import ServerRouter from "@routes/utils/server";
-import { matchPath } from "react-router-dom";
+import ServerRouter from "@routes/server";
 import Layout from "@common/layout";
 import { renderToString } from "react-dom/server";
-import on from "await-handler";
-import routes from "@routes/routes";
 
-const render = async (url) => {
-  const CurrentRoute = routes.find((route) => matchPath(route, url))?.component;
-  // ignore error temporarily
-  const [_err, data] =
-    CurrentRoute?.initData && CurrentRoute.initData instanceof Function
-      ? await on(CurrentRoute.initData())
-      : [undefined, undefined];
-  return renderToString(
-    <Layout serverData={data}>
-      <ServerRouter url={url} serverData={data} />
-    </Layout>
-  );
+const csrRenderToString = renderToString(<Layout />);
+
+const render = (url) => {
+  // Client Side Render
+  if (process.env.CSR === "true") {
+    return csrRenderToString;
+  }
+
+  // Isomorphic Render
+  if (process.env.CSR !== "true") {
+    return renderToString(
+      <Layout>
+        <ServerRouter url={url} />
+      </Layout>
+    );
+  }
 };
 
 export default render;

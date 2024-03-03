@@ -18,7 +18,7 @@ Object.keys(manifest).map((filename) => {
   manifestObj[ext].push(manifest[filename]);
 });
 
-const Layout = ({ children, serverData }) => {
+const Layout = ({ children }) => {
   return (
     <html lang="en">
       <head>
@@ -51,11 +51,6 @@ const Layout = ({ children, serverData }) => {
 
       <body>
         <div id="app">{children}</div>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.__SERVER_DATA__ = ${JSON.stringify(serverData)}`,
-          }}
-        ></script>
         {manifestObj.js.map((link) => (
           <script key={link} src={link}></script>
         ))}
