@@ -1,5 +1,12 @@
 import React from "react";
-import { hydrateRoot } from "react-dom/client";
+import { hydrateRoot, createRoot } from "react-dom/client";
 import ClientRouter from "@routes/client";
 
-hydrateRoot(document.getElementById("app"), <ClientRouter />);
+const ele = document.getElementById("app");
+if (window.SERVER_DATA?.mode === "SSR") {
+  hydrateRoot(ele, <ClientRouter />);
+}
+
+if (window.SERVER_DATA?.mode === "CSR") {
+  createRoot(ele).render(<ClientRouter />);
+}
