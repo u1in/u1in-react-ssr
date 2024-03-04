@@ -1,6 +1,7 @@
 const path = require("path");
 
 const webpackConfig = {
+  stats: "errors-only",
   resolve: {
     extensions: [".jsx", ".js"],
     alias: {
