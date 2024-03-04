@@ -3,7 +3,9 @@ const fs = require("fs");
 const lnk = require("lnk");
 
 // delete old soft link
-fs.unlinkSync(path.resolve(__dirname, "../build/node.js"));
+try {
+  fs.unlinkSync(path.resolve(__dirname, "../build/node.js"));
+} catch (error) {}
 
 // soft link build/node.js -> build/server/node.js
 lnk.sync(
