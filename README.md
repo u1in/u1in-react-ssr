@@ -1,3 +1,3 @@
-# u1in-react-isomorphic-render
+# u1in-react-ssr
 
-React isomorphic render framework
+React ssr render framework

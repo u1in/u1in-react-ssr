@@ -1,9 +1,11 @@
 {
-  "name": "u1in-react-isomorphic-render",
+  "name": "u1in-react-ssr",
   "version": "1.0.0",
   "description": "Most minimal react isomorphic rendering framework.",
   "keywords": [
     "react",
+    "ssr",
+    "csr",
     "isomorphic",
     "isomorphic rendering",
     "koa"
