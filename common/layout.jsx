@@ -18,7 +18,7 @@ Object.keys(manifest).map((filename) => {
   manifestObj[ext].push(manifest[filename]);
 });
 
-const Layout = ({ children }) => {
+const Layout = ({ children, data }) => {
   return (
     <html lang="en">
       <head>
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-        <title>u1in-react-isomorphic-render</title>
+        <title>u1in-react-ssr</title>
         <style
           dangerouslySetInnerHTML={{
             __html: `body,
@@ -51,6 +51,13 @@ const Layout = ({ children }) => {
 
       <body>
         <div id="app">{children}</div>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.SERVER_DATA = ${JSON.stringify(data)}
+        `,
+          }}
+        ></script>
         {manifestObj.js.map((link) => (
           <script key={link} src={link}></script>
         ))}

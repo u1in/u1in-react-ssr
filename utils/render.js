@@ -3,7 +3,7 @@ import ServerRouter from "@routes/server";
 import Layout from "@common/layout";
 import { renderToString } from "react-dom/server";
 
-const csrRenderToString = renderToString(<Layout />);
+const csrRenderToString = renderToString(<Layout data={{ mode: "CSR"}} />);
 
 const render = (url) => {
   // Client Side Render
@@ -11,11 +11,11 @@ const render = (url) => {
     return csrRenderToString;
   }
 
-  // Isomorphic Render
+  // SSR Render
   if (process.env.CSR !== "true") {
     return renderToString(
-      <Layout>
-        <ServerRouter url={url} />
+      <Layout data={{ mode: "SSR"}}>
+        <ServerRouter url={url}  />
       </Layout>
     );
   }
